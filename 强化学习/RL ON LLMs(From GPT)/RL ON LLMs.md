@@ -221,7 +221,7 @@ $$
 r
 $$
 
-这个 [Reward Model](Reward Model.md) 就承担了部分“环境”的作用。
+这个 [Reward Model](Reward%20Model.md) 就承担了部分“环境”的作用。
 
 ---
 
