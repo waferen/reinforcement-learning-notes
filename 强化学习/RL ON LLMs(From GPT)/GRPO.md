@@ -1,5 +1,5 @@
 从一张图我们就能明显看出 [PPO](../PPO.md)与 GRPO 的不同。
-![Pasted image 20260820121932.png](附件/Pasted%20image%2020260820121932.png)
+![Pasted image 20260820121932](附件/Pasted%20image%2020260820121932.png)
 我们从：
 
 > **“LLM 为什么需要 PPO → PPO 为什么要 Critic → GRPO 怎么把 Critic 去掉 → 它到底怎么更新模型”**

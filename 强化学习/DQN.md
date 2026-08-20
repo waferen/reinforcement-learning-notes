@@ -9,7 +9,7 @@ https://www.bilibili.com/video/BV1hhbSzjEi1?spm_id_from=333.788.videopod.episode
 
 >在学习完普通的基于 state 的 Value Function 后，我们可以学习另一种 Critic——基于 state-action 的 Value Function。注意二者的区别：
 > $V^\pi(s)$：**状态价值函数**（只看状态 s）→ 在策略 $\pi$ 下，从状态s出发**后续所有动作都按 $\pi$ 执行**，能拿到的期望累计回报
-> $Q^\pi(s,a)$：**状态 - 动作价值函数 / Q 函数**（同时看 $(s,a)$）→ 在策略 $(\pi)$ 下，**先在s刻意执行动作a，之后再全部按 $(\pi)$ 执行**，能拿到的期望累计回报
+> $Q^\pi(s,a)$：**状态 - 动作价值函数 / Q 函数**（同时看$`(s,a)`$）→ 在策略 $(\pi)$ 下，**先在s刻意执行动作a，之后再全部按 $(\pi)$ 执行**，能拿到的期望累计回报
 
 Q函数定义为：
 
@@ -47,7 +47,7 @@ $$
 
 关于 Q 函数具体可查看[Q函数(From GPT)](Q函数(From%20GPT).md)，里面具体介绍了 Q-Learning 的数学框架，还介绍了其与 Sarsa 的区别。
 
-![Pasted image 20260812164814.png](附件/Pasted%20image%2020260812164814.png)
+![Pasted image 20260812164814](附件/Pasted%20image%2020260812164814.png)
 ## Q-Learning在强化学习里的定位
 
 >那么Q-Learning 即是要学习这样一种 Q 函数，当然学习 Q 函数的方式有很多，Q-Learning 只是 TD 算法的其中一种。它在强化学习的定位大概如下图。
@@ -74,17 +74,17 @@ $$
 
 >Q Learning算法如下：
 
-![Pasted image 20260817125153.png](附件/Pasted%20image%2020260817125153.png)
+![Pasted image 20260817125153](附件/Pasted%20image%2020260817125153.png)
 
 ## DQN简介
 
 >进一步 DQN 即是在 Q-Learning 的基础上将 Q函数变成了 Network。
 
-![Pasted image 20260819140939.png](附件/Pasted%20image%2020260819140939.png)
+![Pasted image 20260819140939](附件/Pasted%20image%2020260819140939.png)
 >具体的训练目标（即 TD error）定义如下：
 
-![Pasted image 20260819143314.png](附件/Pasted%20image%2020260819143314.png)
-![Pasted image 20260819143525.png](附件/Pasted%20image%2020260819143525.png)
+![Pasted image 20260819143314](附件/Pasted%20image%2020260819143314.png)
+![Pasted image 20260819143525](附件/Pasted%20image%2020260819143525.png)
 
 
 >当然只是这样单纯的去训练 DQN 效果并不好，我们需要一些 trick。接下来介绍一些 trick。
@@ -93,49 +93,49 @@ $$
 
 >我们都知道 MC 是高方差低偏差，TD 是低方差高偏差。那么如何降低 TD 的偏差呢？一个方式是通过 Muti-step 来代替 One-step。
 
-![Pasted image 20260819155819.png](附件/Pasted%20image%2020260819155819.png)
+![Pasted image 20260819155819](附件/Pasted%20image%2020260819155819.png)
 
 >要达到这个效果其实只要在原本的 Ut 基础上多展开m 项。
 
 
-![Pasted image 20260819155849.png](附件/Pasted%20image%2020260819155849.png)
-![Pasted image 20260819160016.png](附件/Pasted%20image%2020260819160016.png)
-![Pasted image 20260819160056.png](附件/Pasted%20image%2020260819160056.png)
+![Pasted image 20260819155849](附件/Pasted%20image%2020260819155849.png)
+![Pasted image 20260819160016](附件/Pasted%20image%2020260819160016.png)
+![Pasted image 20260819160056](附件/Pasted%20image%2020260819160056.png)
 
 ## Experience Replay
 
 >ER在 RL 上提出的 Motivation 主要是由于经验的浪费。
 
-![Pasted image 20260819144332.png](附件/Pasted%20image%2020260819144332.png)
-![Pasted image 20260819144350.png](附件/Pasted%20image%2020260819144350.png)
+![Pasted image 20260819144332](附件/Pasted%20image%2020260819144332.png)
+![Pasted image 20260819144350](附件/Pasted%20image%2020260819144350.png)
 >ER 本质上就是维护一个 Replay Buffer ，通过这个 buffer，对历史数据进行重复训练。这里的 n 是 buffer 大小，是超参需要调，在 ER 中，在 n 较小时，一般是n 越大效果越好。
 
-![Pasted image 20260819144531.png](附件/Pasted%20image%2020260819144531.png)
+![Pasted image 20260819144531](附件/Pasted%20image%2020260819144531.png)
 >由于可以用 buffer 中的旧数据，即可以形成 batch 进行训练，可以使用 mini-batch-SGD，比直接 GD 会更快收敛。
 
-![Pasted image 20260819144828.png](附件/Pasted%20image%2020260819144828.png)
+![Pasted image 20260819144828](附件/Pasted%20image%2020260819144828.png)
 >当然 ER 的方式有很多，它是持续学习的基础。本人也复现并改进过一个 CVPR2025 提出的 ER 方法，可以参考库 https://github.com/waferen/ViewBatchModel-MyThesis
 
-![Pasted image 20260819145148.png](附件/Pasted%20image%2020260819145148.png)
+![Pasted image 20260819145148](附件/Pasted%20image%2020260819145148.png)
 >这里我们可以对一种 ER 方法 Prioritized ER，进行介绍。即对于更少见，更重要的经验，提高其在 buffer 中的优先级。
 
-![Pasted image 20260819145420.png](附件/Pasted%20image%2020260819145420.png)
+![Pasted image 20260819145420](附件/Pasted%20image%2020260819145420.png)
 >那么基于什么评判什么是更重要的？基于TD error。
 
-![Pasted image 20260819145620.png](附件/Pasted%20image%2020260819145620.png)
+![Pasted image 20260819145620](附件/Pasted%20image%2020260819145620.png)
 >由于对优先级进行了排序，高优先级的容易多次训练，那么对应要降低高优先级样本的学习率。
 
-![Pasted image 20260819145757.png](附件/Pasted%20image%2020260819145757.png)
+![Pasted image 20260819145757](附件/Pasted%20image%2020260819145757.png)
 ## Dueling Network
 
 >这是第二个 trick，我们先回顾下几种价值函数。
 
-![Pasted image 20260819151446.png](附件/Pasted%20image%2020260819151446.png)
-![Pasted image 20260819151704.png](附件/Pasted%20image%2020260819151704.png)
+![Pasted image 20260819151446](附件/Pasted%20image%2020260819151446.png)
+![Pasted image 20260819151704](附件/Pasted%20image%2020260819151704.png)
 >Dueling Network 的本质就是将DQN 原本只学习 Q 改成对 A 和 V 学习两个网络。
 >接下来我们进行数学推导。先观察以下结论。
 
-![Pasted image 20260819160438.png](附件/Pasted%20image%2020260819160438.png)
+![Pasted image 20260819160438](附件/Pasted%20image%2020260819160438.png)
 证明如下：
 $$
 \boxed{V^*(s)=\max_a Q^*(s,a)}
@@ -224,7 +224,7 @@ $$
 
 ---
 
-令最优策略为 ($\pi^*$)，那么：
+令最优策略为 ($`\pi^*`$)，那么：
 
 $$
 V^*(s)=V^{\pi^*}(s)
@@ -260,7 +260,7 @@ $$
 \sum_a\pi^*(a|s)Q^*(s,a)
 $$
 
-是所有 $Q^*(s,a)$ 的**加权平均**。
+是所有 $`Q^*(s,a)`$ 的**加权平均**。
 
 一个数的加权平均值不可能超过这些数中的最大值，因此：
 
@@ -278,7 +278,7 @@ $$
 a^*=\arg\max_a Q^*(s,a)
 $$
 
-也就是说 $a^*$ 是状态 $s$ 下最优的动作。
+也就是说 $`a^*`$ 是状态 $s$ 下最优的动作。
 
 如果我们在状态 $s$ 直接选择这个动作 (a^*)，然后从下一步开始一直采取最优策略，那么得到的价值就是：
 
@@ -292,7 +292,7 @@ $$
 V^*(s)\geq Q^*(s,a^*)
 $$
 
-而根据 $a^*$ 的定义：
+而根据 $`a^*`$ 的定义：
 
 $$
 Q^*(s,a^*)=\max_aQ^*(s,a)
@@ -439,18 +439,18 @@ $$
 
 的是**最优 Advantage**。
 
-这也是为什么slides强调的是 ($A^*$)，而不是一般的 ($A^\pi$)。
+这也是为什么slides强调的是 ($`A^*`$)，而不是一般的 ($A^\pi$)。
 
->那么我们回到 slides，我们对等式进行一个变换，可以将 $Q^*$ 表示成以下式子。
+>那么我们回到 slides，我们对等式进行一个变换，可以将$`Q^*`$表示成以下式子。
 
-![Pasted image 20260819162119.png](附件/Pasted%20image%2020260819162119.png)
+![Pasted image 20260819162119](附件/Pasted%20image%2020260819162119.png)
 >那么我们训练两个网络，一个 V 和一个 A 即可得到 Q。
 
-![Pasted image 20260819162444.png](附件/Pasted%20image%2020260819162444.png)
+![Pasted image 20260819162444](附件/Pasted%20image%2020260819162444.png)
 
 >为什么要加一个 max 项。因为如果不加会出现 Non-identifiability 的问题。
 
-![Pasted image 20260819162647.png](附件/Pasted%20image%2020260819162647.png)
+![Pasted image 20260819162647](附件/Pasted%20image%2020260819162647.png)
 >**为什么Dueling Network 的“要把一个 Q 网络硬拆成两个网络?”**
 
 > 在很多状态下，**“这个状态本身值多少钱”** 和 **“不同动作之间到底差多少”** 是两种不同的信息。

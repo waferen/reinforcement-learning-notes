@@ -736,7 +736,7 @@ $$
 | 类型         | TD Control           | TD Control                  |
 | Model-free | ✅                    | ✅                           |
 | Policy     | On-policy            | Off-policy                  |
-| 学习对象       | $Q^\pi$              | $Q^*$                       |
+| 学习对象       | $Q^\pi$              | $`Q^*`$                       |
 | TD Target  | $r+\gamma Q(s',a')$  | $r+\gamma\max_{a'}Q(s',a')$ |
 | 下一动作       | 实际采取的 $a'$           | Q值最大的动作                     |
 | 行为策略       | 通常 $\epsilon$ -greedy | 通常 $\epsilon$ -greedy        |
@@ -779,7 +779,7 @@ r+\gamma\max_{a'}Q^*(s',a')
 \right]  
 $$
 
-得到 $Q^*$ 后，最优策略可以直接通过 Greedy 得到：
+得到 $`Q^*`$ 后，最优策略可以直接通过 Greedy 得到：
 
 $$  
 \boxed{  
