@@ -89,13 +89,13 @@ $$
 
 所以对于 LLM：
 
-$$
+```math
 \boxed{  
 \pi_\theta(a_t|s_t)
 =
 P_\theta(\text{token}_t|x,\text{previous tokens})  
 }
-$$
+```
 
 也就是说：
 
@@ -132,10 +132,10 @@ $$
 
 那么当前状态就是：
 
-$$
+```math
 s_t=  
 (\text{用户问题},\text{“牛顿第二定律指出”})
-$$
+```
 
 ---
 
@@ -173,11 +173,11 @@ $$
 
 所以：
 
-$$
+```math
 \boxed{  
 \text{LLM就是policy}  
 }
-$$
+```
 
 这一点是理解 RLHF / GRPO / RLVR 的钥匙。
 
@@ -189,23 +189,23 @@ $$
 
 传统 RL：
 
-$$
+```math
 \text{Agent}  
 \rightarrow  
 \text{Environment}  
 \rightarrow  
 \text{Reward}
-$$
+```
 
 例如机器人：
 
-$$
+```math
 \text{动作}  
 \rightarrow  
 \text{物理世界}  
 \rightarrow  
 \text{状态变化 + 奖励}
-$$
+```
 
 但是 LLM 不一定存在这样一个真实物理环境。
 
@@ -213,13 +213,13 @@ $$
 
 最简单的情况下：
 
-$$
+```math
 \text{LLM回答}  
 \rightarrow  
 \text{Reward Model}  
 \rightarrow  
 r
-$$
+```
 
 这个 [Reward Model](Reward%20Model.md) 就承担了部分“环境”的作用。
 
@@ -295,11 +295,11 @@ $$
 
 但是对于 LLM：
 
-$$
+```math
 s_{t+1}
 =
 (s_t,a_t)
-$$
+```
 
 也就是：
 
@@ -321,10 +321,10 @@ $$
 
 于是：
 
-$$
+```math
 s_1=  
 \text{“解释牛顿第二定律 牛顿"}
-$$
+```
 
 然后：
 
@@ -334,10 +334,10 @@ $$
 
 得到：
 
-$$
+```math
 s_2=  
 \text{“解释牛顿第二定律 牛顿 第二"}
-$$
+```
 
 继续下去。
 
@@ -351,11 +351,11 @@ $$
 
 完整 trajectory：
 
-$$
+```math
 \tau
 
 (s_0,a_1,s_1,a_2,\ldots,s_T)
-$$
+```
 
 即：
 
@@ -391,12 +391,12 @@ $$
 
 所以 LLM RL 很常见的一种形式是：
 
-$$
+```math
 \boxed{  
 r_1=r_2=\cdots=r_{T-1}=0,\quad  
 r_T=R(x,y)  
 }
-$$
+```
 
 也就是：
 
@@ -410,7 +410,7 @@ $$
 
 整个过程其实非常直观：
 
-$$
+```math
 \boxed{  
 Prompt  
 \rightarrow  
@@ -422,7 +422,7 @@ LLM生成回答
 \rightarrow  
 更新LLM  
 }
-$$
+```
 
 然后不断重复。
 
@@ -486,7 +486,7 @@ $$
 
 PPO 看：
 
-$$
+```math
 r_t(\theta)
 
 \frac{  
@@ -494,7 +494,7 @@ r_t(\theta)
 }{  
 \pi_{\theta_{\text{old}}}(y_t|s_t)  
 }
-$$
+```
 
 这个东西叫：
 
@@ -518,7 +518,7 @@ $$
 
 所以 PPO 会限制更新幅度：
 
-$$
+```math
 L^{CLIP}
 
 \mathbb E  
@@ -528,7 +528,7 @@ r_tA_t,
 \operatorname{clip}(r_t,1-\epsilon,1+\epsilon)A_t  
 )  
 \right]
-$$
+```
 
 意思就是：
 
@@ -622,7 +622,7 @@ $$
 
 可以把它画成：
 
-$$
+```math
 \boxed{  
 \text{Prompt}  
 \rightarrow  
@@ -640,7 +640,7 @@ $$
 \rightarrow  
 \pi_\theta  
 }
-$$
+```
 
 不断循环。
 
@@ -726,11 +726,11 @@ $$
 
 因为 LLM 很容易：
 
-$$
+```math
 \text{同一个 prompt}  
 \rightarrow  
 \text{采样多个回答}
-$$
+```
 
 比如：
 
@@ -776,13 +776,13 @@ LLM 的 environment 并不一定是一个真实世界。
 
 比如数学：
 
-$$
+```math
 \text{答案}  
 \rightarrow  
 \text{检查器}  
 \rightarrow  
 {0,1}
-$$
+```
 
 ---
 
@@ -790,13 +790,13 @@ $$
 
 例如：
 
-$$
+```math
 (x,y)  
 \rightarrow  
 RM_\phi(x,y)  
 \rightarrow  
 r
-$$
+```
 
 这个 reward model 本身可能是另外一个神经网络。
 
@@ -844,7 +844,7 @@ $$
 
 以后更复杂的 LLM agent：
 
-$$
+```math
 LLM  
 \rightarrow  
 Browser  
@@ -854,7 +854,7 @@ Web
 Observation  
 \rightarrow  
 LLM
-$$
+```
 
 这时候环境就真的很像传统 RL 了。
 
@@ -868,11 +868,11 @@ $$
 
 环境非常简单：
 
-$$
+```math
 s_{t+1}
 
 s_t+a_t
-$$
+```
 
 最终：
 
@@ -882,11 +882,11 @@ $$
 
 比如：
 
-$$
+```math
 \text{数学题}  
 \rightarrow  
 \text{答案验证}
-$$
+```
 
 这类非常常见。
 
@@ -896,7 +896,7 @@ $$
 
 例如 coding agent：
 
-$$
+```math
 \text{LLM}  
 \rightarrow  
 \text{写代码}  
@@ -908,23 +908,23 @@ $$
 \text{Observation}  
 \rightarrow  
 \text{LLM}
-$$
+```
 
 这里环境就明显复杂了。
 
 例如：
 
-$$
+```math
 s_t=  
 \text{当前代码 + terminal状态}
-$$
+```
 
 动作：
 
-$$
+```math
 a_t=  
 \text{执行shell命令}
-$$
+```
 
 环境：
 
@@ -934,10 +934,10 @@ $$
 
 reward：
 
-$$
+```math
 R=  
 \text{测试通过率}
-$$
+```
 
 这就越来越像传统 RL。
 
@@ -951,7 +951,7 @@ $$
 
 一般是：
 
-$$
+```math
 \boxed{  
 Pretraining  
 \rightarrow  
@@ -959,7 +959,7 @@ SFT
 \rightarrow  
 RL  
 }
-$$
+```
 
 ---
 
@@ -977,11 +977,11 @@ $$
 
 目标：
 
-$$
+```math
 \mathcal L_{LM}
 
 -\sum_t\log P_\theta(x_t|x_{<t})
-$$
+```
 
 最后得到一个：
 
@@ -1049,13 +1049,13 @@ $$
 
 于是：
 
-$$
+```math
 \boxed{  
 \text{SFT model}  
 \rightarrow  
 \text{RL}  
 }
-$$
+```
 
 ---
 
@@ -1063,23 +1063,23 @@ $$
 
 经典 RLHF 大致有：
 
-$$
+```math
 \text{Prompt}  
 \rightarrow  
 \text{Policy Model}  
 \rightarrow  
 \text{Response}
-$$
+```
 
 然后：
 
-$$
+```math
 \text{Response}  
 \rightarrow  
 \text{Reward Model}  
 \rightarrow  
 R
-$$
+```
 
 此外通常还有：
 
@@ -1097,7 +1097,7 @@ $$
 
 而会加入 KL penalty：
 
-$$
+```math
 R'
 
 R
@@ -1110,7 +1110,7 @@ D_{KL}
 \Vert  
 \pi_{\text{ref}}  
 )
-$$
+```
 
 这意味着：
 
@@ -1145,7 +1145,7 @@ $$
 
 可以理解成：
 
-$$
+```math
 \boxed{  
 \text{RL objective}
 
@@ -1153,7 +1153,7 @@ $$
 +  
 \text{stay close to original model}  
 }
-$$
+```
 
 ---
 
@@ -1215,10 +1215,10 @@ $$
 
 然后：
 
-$$
+```math
 A_i=  
 \frac{r_i-\mu}{\sigma}
-$$
+```
 
 或者类似的组内归一化。
 
@@ -1252,31 +1252,31 @@ $$
 
 因为：
 
-$$
+```math
 P_\theta(y|x)
 
 \prod_t  
 P_\theta(y_t|x,y_{<t})
-$$
+```
 
 取 log：
 
-$$
+```math
 \log P_\theta(y|x)
 
 \sum_t  
 \log P_\theta(y_t|x,y_{<t})
-$$
+```
 
 所以：
 
-$$
+```math
 \nabla_\theta \log P_\theta(y|x)
 
 \sum_t  
 \nabla_\theta  
 \log P_\theta(y_t|x,y_{<t})
-$$
+```
 
 最后 reward：
 
@@ -1288,7 +1288,7 @@ $$
 
 所以：
 
-$$
+```math
 \boxed{  
 R  
 \rightarrow  
@@ -1296,7 +1296,7 @@ R
 \rightarrow  
 \text{所有token对应的概率}  
 }
-$$
+```
 
 ---
 
@@ -1304,7 +1304,7 @@ $$
 
 传统 RL：
 
-$$
+```math
 s_0  
 \xrightarrow{a_1}  
 s_1  
@@ -1313,11 +1313,11 @@ s_2
 \rightarrow\cdots  
 \rightarrow  
 R
-$$
+```
 
 LLM：
 
-$$
+```math
 prompt  
 \xrightarrow{token_1}  
 token_1  
@@ -1327,7 +1327,7 @@ token_1token_2
 \rightarrow  
 answer  
 \rightarrow R
-$$
+```
 
 两者结构其实几乎完全一样。
 
@@ -1418,11 +1418,11 @@ $$
 
 因为：
 
-$$
+```math
 \pi_\theta(a_t|s_t)
 =
 P_\theta(token_t|context)
-$$
+```
 
 ---
 
@@ -1452,35 +1452,35 @@ $$
 
 可以是：
 
-$$
+```math
 \boxed{  
 \text{Reward Model}  
 }
-$$
+```
 
 也可以是：
 
-$$
+```math
 \boxed{  
 \text{数学验证器}  
 }
-$$
+```
 
 也可以是：
 
-$$
+```math
 \boxed{  
 \text{代码编译器 + 单元测试}  
 }
-$$
+```
 
 也可以是：
 
-$$
+```math
 \boxed{  
 \text{浏览器 / 游戏 / 机器人 / 真实世界}  
 }
-$$
+```
 
 所以“LLM RL 没有环境”这个说法不太准确，更准确的是：
 
@@ -1490,7 +1490,7 @@ $$
 
 # 33. 你可以记住这一张“核心对应关系”
 
-$$
+```math
 \boxed{  
 \begin{aligned}  
 \text{State} &\leftrightarrow \text{当前上下文}\\
@@ -1502,14 +1502,14 @@ $$
 \text{PPO/GRPO} &\leftrightarrow \text{更新 LLM}  
 \end{aligned}  
 }
-$$
+```
 
 真正值得你继续往下理解的是：
 
-$$
+```math
 \boxed{  
 \text{LLM为什么可以把“一个最终 reward”反向传播成每个 token 的训练信号？}  
 }
-$$
+```
 
 这一步一旦搞明白，你就会彻底看懂 **Policy Gradient → PPO → GRPO → LLM reasoning RL** 这条线。

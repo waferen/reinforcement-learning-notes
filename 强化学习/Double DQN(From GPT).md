@@ -150,11 +150,11 @@ $$
 
 普通 DQN：
 
-$$
+```math
 \boxed{  
 y=r+\gamma\max_{a'}Q_{\theta^-}(s',a')  
 }
-$$
+```
 
 这里：
 
@@ -164,11 +164,11 @@ Double DQN 把它拆成两步：
 
 ### 第一步：Online Network 负责选动作
 
-$$
+```math
 a^*
 =
 \arg\max_{a'}Q_\theta(s',a')
-$$
+```
 
 ### 第二步：Target Network 负责评价这个动作
 
@@ -178,7 +178,7 @@ $$
 
 所以 target 变成：
 
-$$
+```math
 \boxed{  
 y=  
 r+\gamma Q_{\theta^-}  
@@ -187,7 +187,7 @@ s',
 \arg\max_{a'}Q_\theta(s',a')  
 \right)  
 }
-$$
+```
 
 这就是 Double DQN。
 
@@ -203,29 +203,29 @@ $$
 
 这一件事情拆成了：
 
-$$
+```math
 \boxed{  
 \text{Action Selection}  
 +  
 \text{Action Evaluation}  
 }
-$$
+```
 
 即：
 
-$$
+```math
 \underbrace{  
 \arg\max_aQ_\theta(s,a)  
 }_{\text{选择}}
-$$
+```
 
 和：
 
-$$
+```math
 \underbrace{  
 Q_{\theta^-}(s,a)  
 }_{\text{评价}}
-$$
+```
 
 分别交给两个网络。
 
@@ -264,15 +264,15 @@ $$
 
 网络本身：
 
-$$
+```math
 Q_\theta(s,a)
 
 V_\theta(s)+A_\theta(s,a)-\text{normalization}
-$$
+```
 
 然后 target 使用 Double DQN：
 
-$$
+```math
 y
 
 r+\gamma  
@@ -281,7 +281,7 @@ Q_{\theta^-}
 s',  
 \arg\max_{a'}Q_\theta(s',a')  
 \right)
-$$
+```
 
 于是：
 
@@ -349,11 +349,11 @@ $$
 
 所以：
 
-$$
+```math
 \boxed{  
 V/A\neq Online/Target  
 }
-$$
+```
 
 这是理解 DQN 系列时非常关键的一点。
 
@@ -384,7 +384,7 @@ $$
 
 甚至可以进一步整理成：
 
-$$
+```math
 \boxed{  
 \begin{array}{c|c}  
 \text{方法}&\text{主要解决的问题}\\
@@ -397,7 +397,7 @@ $$
 \text{Double DQN}&\text{Q值过估计}  
 \end{array}  
 }
-$$
+```
 
 所以从学习 DQN 的角度，你现在可以把两者记成：
 
@@ -541,11 +541,11 @@ $$
 
 假设有 4 个动作：
 
-$$
+```math
 Q_\theta(s_t,\cdot)
 =
 [1.2,2.5,1.8,0.9]
-$$
+```
 
 对应：
 
@@ -616,11 +616,11 @@ $$
 
 于是得到一条经验：
 
-$$
+```math
 \boxed{  
 (s_t,a_t,r_{t+1},s_{t+1})  
 }
-$$
+```
 
 例如：
 
@@ -695,11 +695,11 @@ $$
 
 对于 batch 中每条经验，我们首先用 **Online Network** 计算实际执行动作的 Q：
 
-$$
+```math
 \boxed{  
 Q_\theta(s_i,a_i)  
 }
-$$
+```
 
 注意：
 
@@ -717,14 +717,14 @@ $$
 
 先让 **Online Network** 来选择：
 
-$$
+```math
 \boxed{  
 a_i^*
 =
 \arg\max_{a'}  
 Q_\theta(s_{i+1},a')  
 }
-$$
+```
 
 注意：
 
@@ -732,11 +732,11 @@ $$
 
 例如：
 
-$$
+```math
 Q_\theta(s_{i+1},\cdot)
 =
 [2.1,3.7,3.0,2.8]
-$$
+```
 
 那么：
 
@@ -776,11 +776,11 @@ $$
 
 接下来交给 Target Network：
 
-$$
+```math
 \boxed{  
 Q_{\theta^-}(s_{i+1},a_i^*)  
 }
-$$
+```
 
 也就是：
 
@@ -792,7 +792,7 @@ $$
 
 于是：
 
-$$
+```math
 \boxed{  
 y_i
 =
@@ -806,19 +806,19 @@ s_{i+1},
 Q_\theta(s_{i+1},a')  
 \right)  
 }
-$$
+```
 
 如果下一状态已经是终止状态，那么没有未来回报：
 
-$$
+```math
 \boxed{  
 y_i=r_{i+1}  
 }
-$$
+```
 
 通常写成：
 
-$$
+```math
 y_i
 =
 r_{i+1}  
@@ -830,7 +830,7 @@ s_{i+1},
 \arg\max_{a'}  
 Q_\theta(s_{i+1},a')  
 \right)
-$$
+```
 
 ---
 
@@ -848,11 +848,11 @@ $$
 
 Online Network 给出：
 
-$$
+```math
 Q_\theta(s',\cdot)
 =
 [4.1,5.2,4.8]
-$$
+```
 
 所以：
 
@@ -862,11 +862,11 @@ $$
 
 然后 Target Network 给出：
 
-$$
+```math
 Q_{\theta^-}(s',\cdot)
 =
 [4.5,4.7,5.0]
-$$
+```
 
 注意这里：
 
@@ -882,11 +882,11 @@ $$
 
 最终：
 
-$$
+```math
 y
 =
 1+0.99\times4.7
-$$
+```
 
 得到：
 
@@ -918,11 +918,11 @@ $$
 
 那么 TD error：
 
-$$
+```math
 \boxed{  
 \delta=y-Q_\theta(s,a)  
 }
-$$
+```
 
 即：
 
@@ -932,7 +932,7 @@ $$
 
 损失函数可以写成：
 
-$$
+```math
 \boxed{  
 L(\theta)
 =
@@ -940,7 +940,7 @@ L(\theta)
 y-Q_\theta(s,a)  
 \right)^2  
 }
-$$
+```
 
 实际实现里通常使用 Huber Loss，而不是简单平方误差。
 
@@ -952,13 +952,13 @@ $$
 
 更新：
 
-$$
+```math
 \boxed{  
 \theta  
 \leftarrow  
 \theta-\alpha\nabla_\theta L  
 }
-$$
+```
 
 注意：
 
@@ -1005,11 +1005,11 @@ $$
 
 然后每隔 $C$ 次训练：
 
-$$
+```math
 \boxed{  
 \theta^-\leftarrow\theta  
 }
-$$
+```
 
 例如：
 
@@ -1084,21 +1084,21 @@ $$
 
 ### Step 3：Online Network 选择动作
 
-$$
+```math
 a_t
 =
 \epsilon\text{-greedy}(Q_\theta(s_t,\cdot))
-$$
+```
 
 ---
 
 ### Step 4：与环境交互
 
-$$
+```math
 (s_t,a_t)  
 \rightarrow  
 (r_{t+1},s_{t+1})
-$$
+```
 
 ---
 
@@ -1114,28 +1114,28 @@ $$
 
 先选：
 
-$$
+```math
 \boxed{  
 a^*
 =
 \arg\max_{a'}  
 Q_\theta(s',a')  
 }
-$$
+```
 
 再评：
 
-$$
+```math
 \boxed{  
 y
 =
 r+\gamma Q_{\theta^-}(s',a^*)  
 }
-$$
+```
 
 合在一起：
 
-$$
+```math
 \boxed{  
 y
 =
@@ -1147,18 +1147,18 @@ s',
 \arg\max_{a'}Q_\theta(s',a')  
 \right)  
 }
-$$
+```
 
 ---
 
 ### Step 7：更新 Online Network
 
-$$
+```math
 L=  
 \left(  
 y-Q_\theta(s,a)  
 \right)^2
-$$
+```
 
 然后：
 
@@ -1170,11 +1170,11 @@ $$
 
 ### Step 8：定期更新 Target Network
 
-$$
+```math
 \boxed{  
 \theta^-\leftarrow\theta  
 }
-$$
+```
 
 然后回到 Step 2。
 

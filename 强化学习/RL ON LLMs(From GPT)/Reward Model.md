@@ -8,11 +8,11 @@
 
 Reward Model（RM）其实就是一个普通的神经网络，它学的是：
 
-$$
+```math
 \boxed{  
 R_\phi(x,y)\rightarrow \text{一个分数}  
 }
-$$
+```
 
 输入：
 
@@ -190,14 +190,14 @@ $$
 
 于是可以定义一个概率：
 
-$$
+```math
 P(y_w\succ y_l)
 
 \sigma  
 \left(  
 R_\phi(x,y_w)-R_\phi(x,y_l)  
 \right)
-$$
+```
 
 其中：
 
@@ -209,7 +209,7 @@ $$
 
 训练目标：
 
-$$
+```math
 \boxed{  
 \mathcal L_{RM}
 
@@ -219,7 +219,7 @@ $$
 R_\phi(x,y_w)-R_\phi(x,y_l)  
 \right)  
 }
-$$
+```
 
 ---
 
@@ -283,7 +283,7 @@ $$
 
 你可以理解成：
 
-$$
+```math
 \boxed{  
 \text{LLM生成多个答案}  
 \rightarrow  
@@ -293,7 +293,7 @@ $$
 \rightarrow  
 \text{训练RM}  
 }
-$$
+```
 
 具体一点：
 
@@ -330,11 +330,11 @@ $$
 
 例如：
 
-$$
+```math
 \text{Transformer Backbone}  
 +  
 \text{Reward Head}
-$$
+```
 
 也就是：
 
@@ -387,21 +387,21 @@ $$
 
 所以：
 
-$$
+```math
 \text{Human preference}  
 \rightarrow  
 \text{Reward Model}  
 \rightarrow  
 \text{LLM behavior}
-$$
+```
 
 换句话说：
 
-$$
+```math
 \boxed{  
 \text{RLHF 本质上是在把人类偏好压缩进一个模型里}  
 }
-$$
+```
 
 ---
 
@@ -409,7 +409,7 @@ $$
 
 你经常会看到：
 
-$$
+```math
 \boxed{  
 \text{Policy Model}  
 +  
@@ -417,7 +417,7 @@ $$
 +  
 \text{Reference Model}  
 }
-$$
+```
 
 分别是：
 
@@ -495,21 +495,21 @@ $$
 
 例如：
 
-$$
+```math
 D_{KL}  
 (\pi_\theta||\pi_{\text{ref}})
-$$
+```
 
 得到：
 
-$$
+```math
 R_{\text{total}}
 
 R_\phi
 -
 
 \beta KL
-$$
+```
 
 ---
 
@@ -529,11 +529,11 @@ $$
 
 最终：
 
-$$
+```math
 \pi_\theta  
 \rightarrow  
 \pi_{\theta'}
-$$
+```
 
 也就是：
 
@@ -583,11 +583,11 @@ $$
 
 那么 LLM 就可能发现：
 
-$$
+```math
 \text{回答越长}  
 \rightarrow  
 R_\phi\uparrow
-$$
+```
 
 于是开始疯狂输出 5000 字。
 
@@ -603,13 +603,13 @@ $$
 
 这就是：
 
-$$
+```math
 \boxed{  
 \text{Proxy Reward}  
 \neq  
 \text{True Objective}  
 }
-$$
+```
 
 ---
 
@@ -635,19 +635,19 @@ $$
 
 于是可以直接：
 
-$$
+```math
 R(y)=  
 \begin{cases}  
 1 & \text{correct}\\
 0 & \text{wrong}  
 \end{cases}
-$$
+```
 
 这时候甚至不需要一个复杂的 Reward Model。
 
 而是：
 
-$$
+```math
 \boxed{  
 \text{LLM}  
 \rightarrow  
@@ -655,7 +655,7 @@ $$
 \rightarrow  
 Reward  
 }
-$$
+```
 
 这就是 **RL with Verifiable Rewards（RLVR）** 背后的核心思想之一。
 
@@ -667,13 +667,13 @@ $$
 
 ### RLHF
 
-$$
+```math
 \text{LLM}  
 \rightarrow  
 \boxed{\text{Reward Model}}  
 \rightarrow  
 R
-$$
+```
 
 Reward Model 来自：
 
@@ -685,13 +685,13 @@ $$
 
 ### RLVR
 
-$$
+```math
 \text{LLM}  
 \rightarrow  
 \boxed{\text{Verifier}}  
 \rightarrow  
 R
-$$
+```
 
 Verifier 来自：
 
@@ -801,19 +801,19 @@ $$
 
 最早：
 
-$$
+```math
 \boxed{  
 \text{Human}  
 \rightarrow  
 \text{直接给Reward}  
 }
-$$
+```
 
 太贵。
 
 于是：
 
-$$
+```math
 \boxed{  
 \text{Human}  
 \rightarrow  
@@ -823,21 +823,21 @@ $$
 \rightarrow  
 \text{Reward}  
 }
-$$
+```
 
 再往后，对于可验证任务：
 
-$$
+```math
 \boxed{  
 \text{Verifier}  
 \rightarrow  
 \text{直接Reward}  
 }
-$$
+```
 
 所以现在理解 LLM RL 时，可以把 reward 来源分成三类：
 
-$$
+```math
 \boxed{  
 \begin{aligned}  
 \text{Human} &\rightarrow \text{Preference}\\
@@ -845,7 +845,7 @@ $$
 \text{Verifier} &\rightarrow \text{Verifiable Reward}  
 \end{aligned}  
 }
-$$
+```
 
 ---
 
@@ -857,11 +857,11 @@ $$
 
 现在可以完整回答：
 
-$$
+```math
 \boxed{  
 \text{LLM}=\text{Policy}  
 }
-$$
+```
 
 它生成：
 
@@ -871,11 +871,11 @@ $$
 
 然后：
 
-$$
+```math
 \boxed{  
 y\rightarrow \text{Reward Source}\rightarrow R  
 }
-$$
+```
 
 Reward Source 可能是：
 
@@ -891,7 +891,7 @@ $$
 
 然后：
 
-$$
+```math
 R  
 \rightarrow  
 A  
@@ -899,11 +899,11 @@ A
 \text{PPO/GRPO}  
 \rightarrow  
 \theta'
-$$
+```
 
 所以完整链条其实是：
 
-$$
+```math
 \boxed{  
 \text{Human Preference}  
 \rightarrow  
@@ -917,11 +917,11 @@ $$
 \rightarrow  
 \text{LLM}  
 }
-$$
+```
 
 而在 RLVR 中则是：
 
-$$
+```math
 \boxed{  
 \text{Verifier}  
 \rightarrow  
@@ -933,6 +933,6 @@ $$
 \rightarrow  
 \text{LLM}  
 }
-$$
+```
 
 接下来看[Value Model 与 Reward Model 区别](Value%20Model%20与%20Reward%20Model%20区别.md)

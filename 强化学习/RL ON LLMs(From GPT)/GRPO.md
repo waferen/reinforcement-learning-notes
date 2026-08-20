@@ -100,21 +100,21 @@ $$
 
 直觉：
 
-$$
+```math
 \boxed{
 A_t>0
 \Rightarrow
 这个 action 比预期好
 }
-$$
+```
 
-$$
+```math
 \boxed{
 A_t<0
 \Rightarrow
 这个 action 比预期差
 }
-$$
+```
 
 所以 PPO 需要一个 **Value Model / Critic** 来估计：V(s)
 
@@ -249,12 +249,12 @@ $$
 
 于是 GRPO 可以直接定义一种**组内相对优势**：
 
-$$
+```math
 \boxed{
 A_i=
 \frac{r_i-\bar r}{\sigma_r}
 }
-$$
+```
 
 因此：
 
@@ -290,13 +290,13 @@ $$
 
 而 GRPO：
 
-$$
+```math
 \boxed{
 A_i=
 \frac{R_i-\operatorname{mean}(R)}
 {\operatorname{std}(R)}
 }
-$$
+```
 
 你可以发现：
 
@@ -427,7 +427,7 @@ $$
 
 计算概率比：
 
-$$
+```math
 r_{i,t}(\theta)
 =
 
@@ -436,7 +436,7 @@ r_{i,t}(\theta)
 }{
 \pi_{\theta_{\text{old}}}(y_{i,t}|x,y_{i,<t})
 }
-$$
+```
 
 这和 PPO 的 ratio 是一样的。
 
@@ -448,10 +448,10 @@ $$
 
 那么希望：
 
-$$
+```math
 \pi_\theta(y_i|x)
 \uparrow
-$$
+```
 
 如果：
 
@@ -461,10 +461,10 @@ $$
 
 那么希望：
 
-$$
+```math
 \pi_\theta(y_i|x)
 \downarrow
-$$
+```
 
 ---
 
@@ -543,7 +543,7 @@ A₂ < 0
 
 可以先把核心结构理解成：
 
-$$
+```math
 \boxed{
 L_{\mathrm{GRPO}}
 =
@@ -552,47 +552,47 @@ L_{\mathrm{PPO-like}}
 +
 \beta L_{\mathrm{KL}}
 }
-$$
+```
 
 其中 PPO-like 部分本质还是：
 
-$$
+```math
 \min
 \left(
 r_t(\theta)A_t,
 \operatorname{clip}(r_t(\theta),1-\epsilon,1+\epsilon)A_t
 \right)
-$$
+```
 
 这和 PPO 非常像。
 
 区别主要在：
 
-$$
+```math
 \boxed{
 A_t
 }
-$$
+```
 
 怎么得到。
 
 PPO：
 
-$$
+```math
 A_t
 \approx
 R_t-V_\phi(s_t)
-$$
+```
 
 GRPO：
 
-$$
+```math
 \boxed{
 A_i=
 \frac{R_i-\operatorname{mean}(R)}
 {\operatorname{std}(R)}
 }
-$$
+```
 
 ---
 
@@ -644,14 +644,14 @@ $$
 
 于是加入 KL penalty：
 
-$$
+```math
 D_{KL}
 \left(
 \pi_\theta
 \parallel
 \pi_{\mathrm{ref}}
 \right)
-$$
+```
 
 直觉就是：
 
@@ -728,10 +728,10 @@ $$
 
 ### Step 4：计算组内平均值
 
-$$
+```math
 \mu_R=
 \frac{1}{G}\sum_{i=1}^{G}R_i
-$$
+```
 
 这里：
 
@@ -743,13 +743,13 @@ $$
 
 ### Step 5：计算组内相对优势
 
-$$
+```math
 \boxed{
 A_i=
 \frac{R_i-\mu_R}
 {\sigma_R+\epsilon}
 }
-$$
+```
 
 得到：
 
@@ -761,7 +761,7 @@ $$
 
 ### Step 6：计算新旧 Policy 概率比
 
-$$
+```math
 r_{i,t}(\theta)
 =
 
@@ -770,7 +770,7 @@ r_{i,t}(\theta)
 }{
 \pi_{\theta_{\mathrm{old}}}(y_{i,t}|x,y_{i,<t})
 }
-$$
+```
 
 ---
 
@@ -875,13 +875,13 @@ $$
 
 最大的变化其实就一个：
 
-$$
+```math
 \boxed{
 \text{Critic}
 \quad\longrightarrow\quad
 \text{Group Relative Reward}
 }
-$$
+```
 
 ---
 
@@ -921,13 +921,13 @@ D → 错误 → 0
 
 所以：
 
-$$
+```math
 \boxed{
 \text{可验证任务}
 \rightarrow
 \text{非常适合 GRPO}
 }
-$$
+```
 
 比如：
 
@@ -982,12 +982,12 @@ $$
 
 而 GRPO：
 
-$$
+```math
 \hat A_i
 =
 
 \frac{R_i-\mu_R}{\sigma_R}
-$$
+```
 
 所以：
 
@@ -1031,23 +1031,23 @@ GRPO
 
 真正值得记住的是：
 
-$$
+```math
 \boxed{
 \text{PPO：}
 \quad
 \text{“这个回答比 Critic 预测的好多少？”}
 }
-$$
+```
 
 而：
 
-$$
+```math
 \boxed{
 \text{GRPO：}
 \quad
 \text{“这个回答比同组其他回答好多少？”}
 }
-$$
+```
 
 这就是为什么叫 **Group Relative Policy Optimization**。
 

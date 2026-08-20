@@ -6,7 +6,7 @@
 
 在经典 PPO-RLHF 中，经常会看到：
 
-$$
+```math
 \boxed{  
 \text{Policy}  
 +  
@@ -16,7 +16,7 @@ $$
 +  
 \text{Reference}  
 }
-$$
+```
 
 它们的职责完全不同。
 
@@ -81,7 +81,7 @@ $$
 
 也就是：
 
-$$
+```math
 V^\pi(s)
 
 \mathbb E_\pi  
@@ -89,21 +89,21 @@ V^\pi(s)
 \sum_{k=t}^{T}\gamma^{k-t}r_k  
 \mid s_t=s  
 \right]
-$$
+```
 
 所以：
 
-$$
+```math
 \boxed{  
 R=\text{实际结果}  
 }
-$$
+```
 
-$$
+```math
 \boxed{  
 V(s)=\text{对未来结果的预测}  
 }
-$$
+```
 
 ---
 
@@ -209,11 +209,11 @@ $$
 
 最经典的定义：
 
-$$
+```math
 \boxed{  
 A^\pi(s,a)=Q^\pi(s,a)-V^\pi(s)  
 }
-$$
+```
 
 意思是：
 
@@ -377,7 +377,7 @@ $$
 
 所以三者职责：
 
-$$
+```math
 \boxed{  
 \begin{aligned}  
 Reward &= \text{最终裁判分数}\\
@@ -385,7 +385,7 @@ Value &= \text{未来得分预测}\\
 Advantage &= \text{实际表现相对预测好多少}  
 \end{aligned}  
 }
-$$
+```
 
 ---
 
@@ -493,20 +493,20 @@ $$
 
 先定义 TD error：
 
-$$
+```math
 \delta_t
 
 r_t+\gamma V(s_{t+1})-V(s_t)
-$$
+```
 
 然后：
 
-$$
+```math
 A_t^{GAE(\gamma,\lambda)}
 
 \sum_{l=0}^{T-t}  
 (\gamma\lambda)^l\delta_{t+l}
-$$
+```
 
 你暂时不用死记公式。
 
@@ -536,11 +536,11 @@ $$
 
 所以：
 
-$$
+```math
 \boxed{  
 \text{Value Model + TD + GAE}  
 }
-$$
+```
 
 共同解决：
 
@@ -554,11 +554,11 @@ $$
 
 Reference Model 通常就是：
 
-$$
+```math
 \boxed{  
 \text{SFT Model}  
 }
-$$
+```
 
 复制一份出来，然后冻结。
 
@@ -603,11 +603,11 @@ $$
 
 约束：
 
-$$
+```math
 \pi_\theta  
 \approx  
 \pi_{ref}
-$$
+```
 
 ---
 
@@ -615,18 +615,18 @@ $$
 
 最典型的就是 KL divergence：
 
-$$
+```math
 D_{KL}  
 \left(  
 \pi_\theta  
 \Vert  
 \pi_{ref}  
 \right)
-$$
+```
 
 于是总体 reward 可以写成：
 
-$$
+```math
 \boxed{  
 R_{total}
 
@@ -635,7 +635,7 @@ R_{RM}
 
 \beta D_{KL}  
 }
-$$
+```
 
 含义：
 
@@ -732,11 +732,11 @@ $$
 
 然后：
 
-$$
+```math
 A_i
 
 \frac{r_i-\mu}{\sigma}
-$$
+```
 
 也就是说：
 
@@ -801,11 +801,11 @@ $$
 
 传统 PPO：
 
-$$
+```math
 A_t  
 \approx  
 R-V(s_t)
-$$
+```
 
 它需要：
 
@@ -819,11 +819,11 @@ $$
 
 而 GRPO：
 
-$$
+```math
 A_i  
 \approx  
 r_i-\operatorname{mean}(r_1,\ldots,r_G)
-$$
+```
 
 它相当于说：
 
@@ -831,17 +831,17 @@ $$
 
 所以：
 
-$$
+```math
 \boxed{  
 \text{PPO：依赖 Value Model 做 baseline}  
 }
-$$
+```
 
-$$
+```math
 \boxed{  
 \text{GRPO：用 group statistics 做 baseline}  
 }
-$$
+```
 
 ---
 
@@ -849,7 +849,7 @@ $$
 
 经典 PPO：
 
-$$
+```math
 \text{Policy}  
 +  
 \text{Value}  
@@ -857,17 +857,17 @@ $$
 \text{Reward}  
 +  
 \text{Reference}
-$$
+```
 
 GRPO 大致：
 
-$$
+```math
 \text{Policy}  
 +  
 \text{Reward}  
 +  
 \text{Reference}
-$$
+```
 
 至少在“通过组内奖励做 advantage”这个核心设计上，不需要单独训练一个 critic/value model。
 
@@ -893,21 +893,21 @@ $$
 
 也就是说：
 
-$$
+```math
 \text{PPO}  
 \rightarrow  
 V(s)  
 \rightarrow  
 A
-$$
+```
 
 而 GRPO 更接近：
 
-$$
+```math
 \text{Group Rewards}  
 \rightarrow  
 \text{Relative Advantage}
-$$
+```
 
 ---
 
@@ -919,11 +919,11 @@ $$
 
 而是：
 
-$$
+```math
 \boxed{  
 \text{如何估计 Advantage}  
 }
-$$
+```
 
 ---
 
@@ -953,11 +953,11 @@ $$
 
 直接比较：
 
-$$
+```math
 A_i  
 \approx  
 \frac{r_i-\mu}{\sigma}
-$$
+```
 
 ---
 
@@ -1006,7 +1006,7 @@ $$
 
 同时旁边还有一根“刹车线”：
 
-$$
+```math
 \boxed{  
 \text{Policy}  
 \leftrightarrow  
@@ -1014,13 +1014,13 @@ $$
 \rightarrow  
 KL\ penalty  
 }
-$$
+```
 
 ---
 
 # 26. 你现在可以把四个东西用一句话记住
 
-$$
+```math
 \boxed{  
 \begin{aligned}  
 \text{Policy} &: \text{我怎么回答？}\\
@@ -1029,11 +1029,11 @@ $$
 \text{Reference} &: \text{你别和原来的自己跑得太远。}  
 \end{aligned}  
 }
-$$
+```
 
 而：
 
-$$
+```math
 \boxed{  
 \text{Advantage}
 
@@ -1042,11 +1042,11 @@ $$
 
 \text{预期表现}  
 }
-$$
+```
 
 所以你前面学的 **Bootstrap、Q、V、Policy、PPO、GRPO** 现在其实已经串起来了：
 
-$$
+```math
 \boxed{  
 Q(s,a)  
 \rightarrow  
@@ -1056,7 +1056,7 @@ A(s,a)
 \rightarrow  
 \text{Policy Update}  
 }
-$$
+```
 
 只是到了 LLM 这里：
 
@@ -1074,11 +1074,11 @@ $$
 
 而 GRPO 的一个核心变化就是：
 
-$$
+```math
 \boxed{  
 \text{不用专门训练 }V(s)，  
 \text{直接用同一 prompt 的多个回答做相对比较。}  
 }
-$$
+```
 
 下一层其实就到了一个特别有意思的问题：**“为什么 GRPO 只看最终 reward，却能够把一个复杂的长 reasoning 过程学出来？”** 这里会真正碰到 **token-level advantage、sequence-level reward、credit assignment、长度偏置，以及为什么 DeepSeek-R1 这类 reasoning RL 能自己长出更长的思维链**。

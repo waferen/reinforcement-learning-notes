@@ -22,7 +22,7 @@ Q^\pi(s,a)=
 \mid  
 s_t=s,a_t=a  
 \right]  
-$$
+```math
 
 它表示：
 
@@ -30,19 +30,19 @@ $$
 
 因此：
 
-$$  
+```
 Q^\pi(s,a)  
-$$
+```math
 
 描述的是：
 
-$$  
+```
 \boxed{  
 \text{状态 }s+\text{动作 }a  
 \rightarrow  
 \text{未来价值}  
 }  
-$$
+```math
 
 ---
 
@@ -52,11 +52,11 @@ $$
 
 最简单的是 **Greedy Policy**：
 
-$$  
+```
 \pi(s)=
 
 \arg\max_a Q(s,a)  
-$$
+```math
 
 即：
 
@@ -64,11 +64,11 @@ $$
 
 因此存在：
 
-$$  
+```
 \boxed{  
 Q\rightarrow\pi  
 }  
-$$
+```math
 
 的关系。
 
@@ -78,11 +78,11 @@ $$
 
 因此问题变成：
 
-$$  
+```
 \boxed{  
 \text{如何通过与环境交互得到的数据学习 }Q？  
 }  
-$$
+```math
 
 这就是 DP、MC、TD、SARSA、Q-Learning 等方法要解决的问题。
 
@@ -98,9 +98,9 @@ $$
 
 如果知道环境转移模型：
 
-$$  
+```
 P(s'|s,a)  
-$$
+```math
 
 就可以利用模型计算未来状态和价值。
 
@@ -112,15 +112,15 @@ $$
 
 如果不知道：
 
-$$  
+```
 P(s'|s,a)  
-$$
+```math
 
 只能通过与环境交互获得：
 
-$$  
+```
 (s_t,a_t,r_{t+1},s_{t+1})  
-$$
+```math
 
 典型方法：
 
@@ -137,7 +137,7 @@ $$
 
 主要有三种思想：
 
-$$  
+```
 \boxed{\text{DP：利用模型进行 Bellman Backup}}  
 $$  
 $$  
@@ -145,7 +145,7 @@ $$
 $$  
 $$  
 \boxed{\text{TD：利用 Bootstrap}}  
-$$
+```math
 
 
 其中需要特别注意：
@@ -154,19 +154,19 @@ $$
 
 更准确地说：
 
-$$  
+```
 \boxed{  
 \text{Q-Learning}\subset\text{TD Learning}  
 }  
-$$
+```math
 
 同样：
 
-$$  
+```
 \boxed{  
 \text{SARSA}\subset\text{TD Learning}  
 }  
-$$
+```math
 
 ---
 
@@ -174,15 +174,15 @@ $$
 
 DP（Dynamic Programming）假设我们知道：
 
-$$  
+```
 P(s'|s,a)  
-$$
+```math
 
 以及奖励函数。
 
 对于给定策略 $\pi$，Q函数满足 Bellman expectation equation：
 
-$$  
+```
 Q^\pi(s,a)=
 
 r(s,a)  
@@ -192,21 +192,21 @@ r(s,a)
 P(s'|s,a)  
 \sum_{a'}  
 \pi(a'|s')Q^\pi(s',a')  
-$$
+```math
 
 因此可以不断进行 Bellman Backup：
 
-$$  
+```
 Q_{k+1}^\pi  
 \leftarrow  
 \mathcal{T}^\pi Q_k^\pi  
-$$
+```math
 
 最终：
 
-$$  
+```
 Q_k^\pi\rightarrow Q^\pi  
-$$
+```math
 
 ### DP的特点
 
@@ -224,11 +224,11 @@ $$
 
 DP的核心思想：
 
-$$  
+```
 \boxed{  
 \text{利用已知模型计算未来价值}  
 }  
-$$
+```math
 
 ---
 
@@ -236,21 +236,21 @@ $$
 
 MC（Monte Carlo）不需要知道：
 
-$$  
+```
 P(s'|s,a)  
-$$
+```math
 
 而是直接与环境交互。
 
 得到完整轨迹：
 
-$$  
+```
 (s_t,a_t,r_{t+1},s_{t+1},\ldots,s_T)  
-$$
+```math
 
 然后计算从 $(s_t,a_t)$ 开始的完整回报：
 
-$$  
+```
 G_t=
 
 r_{t+1}  
@@ -260,11 +260,11 @@ r_{t+1}
 \cdots  
 +  
 \gamma^{T-t-1}r_T  
-$$
+```math
 
 然后更新：
 
-$$  
+```
 Q(s_t,a_t)  
 \leftarrow  
 Q(s_t,a_t)  
@@ -273,13 +273,13 @@ Q(s_t,a_t)
 \left[  
 G_t-Q(s_t,a_t)  
 \right]  
-$$
+```math
 
 其中：
 
-$$  
+```
 \boxed{G_t}  
-$$
+```math
 
 是真实轨迹产生的完整回报。
 
@@ -297,11 +297,11 @@ $$
 
 MC 的核心思想：
 
-$$  
+```
 \boxed{  
 \text{“这一局真正走完之后，我到底获得了多少？”}  
 }  
-$$
+```math
 
 ---
 
@@ -313,15 +313,15 @@ TD（Temporal Difference）的核心思想：
 
 一步 TD 的目标可以写成：
 
-$$  
+```
 \text{Target}=
 
 r+\gamma Q(s',a')  
-$$
+```math
 
 然后：
 
-$$  
+```
 Q(s,a)  
 \leftarrow  
 Q(s,a)  
@@ -331,23 +331,23 @@ Q(s,a)
 r+\gamma Q(s',a')  
 -Q(s,a)  
 \right]  
-$$
+```math
 
 其中：
 
-$$  
+```
 \boxed{  
 r+\gamma Q(s',a')  
 }  
-$$
+```math
 
 称为 **TD Target**。
 
 TD 使用了：
 
-$$  
+```
 \boxed{\text{Bootstrap}}  
-$$
+```math
 
 即：
 
@@ -363,15 +363,15 @@ $$
 
 使用完整真实回报：
 
-$$  
+```
 \boxed{  
 G_t  
 }  
-$$
+```math
 
 因此：
 
-$$  
+```
 Q(s,a)  
 \leftarrow  
 Q(s,a)  
@@ -380,7 +380,7 @@ Q(s,a)
 [  
 G_t-Q(s,a)  
 ]  
-$$
+```math
 
 特点：
 
@@ -398,15 +398,15 @@ $$
 
 只使用一步经验：
 
-$$  
+```
 \boxed{  
 r+\gamma Q(s',a')  
 }  
-$$
+```math
 
 因此：
 
-$$  
+```
 Q(s,a)  
 \leftarrow  
 Q(s,a)  
@@ -415,7 +415,7 @@ Q(s,a)
 [  
 r+\gamma Q(s',a')-Q(s,a)  
 ]  
-$$
+```math
 
 特点：
 
@@ -429,7 +429,7 @@ $$
 
 因此可以记为：
 
-$$  
+```
 \boxed{  
 \text{MC：真实回报}  
 }  
@@ -439,7 +439,7 @@ $$
 \boxed{  
 \text{TD：奖励 + 当前价值估计}  
 }  
-$$
+```math
 
 ---
 
@@ -451,11 +451,11 @@ $$
 
 也就是：
 
-$$  
+```
 \boxed{  
 \pi\rightarrow Q^\pi  
 }  
-$$
+```math
 
 这叫：
 
@@ -471,11 +471,11 @@ $$
 
 给定 Q 函数，可以构造新的策略：
 
-$$  
+```
 \pi_{\text{new}}(s)=
 
 \arg\max_a Q^\pi(s,a)  
-$$
+```math
 
 即：
 
@@ -483,7 +483,7 @@ $$
 
 于是形成：
 
-$$  
+```
 \boxed{  
 \text{Policy Evaluation}  
 \rightarrow  
@@ -492,7 +492,7 @@ $$
 \text{Policy Evaluation}  
 \rightarrow\cdots  
 }  
-$$
+```math
 
 这就是强化学习中非常重要的 **Policy Iteration** 思想。
 
@@ -502,7 +502,7 @@ $$
 
 SARSA 可以理解为：
 
-$$  
+```
 \boxed{  
 \text{SARSA}
 
@@ -512,25 +512,25 @@ $$
 +  
 \text{On-policy Control}  
 }  
-$$
+```math
 
 SARSA 使用：
 
-$$  
+```
 (S_t,A_t,R_{t+1},S_{t+1},A_{t+1})  
-$$
+```math
 
 因此名字来自：
 
-$$  
+```
 \boxed{  
 S-A-R-S-A  
 }  
-$$
+```math
 
 更新公式：
 
-$$  
+```
 Q(s_t,a_t)  
 \leftarrow  
 Q(s_t,a_t)  
@@ -543,45 +543,45 @@ r_{t+1}
 -
 Q(s_t,a_t)  
 \right]  
-$$
+```math
 
 关键在于：
 
-$$  
+```
 \boxed{a_{t+1}}  
-$$
+```math
 
 它是**行为策略实际选择出来的动作**。
 
 如果行为策略为：
 
-$$  
+```
 \pi=\epsilon\text{-greedy}(Q)  
-$$
+```math
 
 那么：
 
-$$  
+```
 a_{t+1}  
 \sim  
 \pi(\cdot|s_{t+1})  
-$$
+```math
 
 因此 SARSA 学习的是当前行为策略：
 
-$$  
+```
 \boxed{  
 Q^{\pi_\epsilon}  
 }  
-$$
+```math
 
 所以：
 
-$$  
+```
 \boxed{  
 \text{SARSA是On-policy}  
 }  
-$$
+```math
 
 ---
 
@@ -591,7 +591,7 @@ Q-Learning 同样是 TD Control 方法。
 
 它的更新公式：
 
-$$  
+```
 Q(s_t,a_t)  
 \leftarrow  
 Q(s_t,a_t)  
@@ -606,31 +606,31 @@ Q(s_{t+1},a')
 -
 Q(s_t,a_t)  
 \right]  
-$$
+```math
 
 与 SARSA 最大的区别：
 
-$$  
+```
 \boxed{  
 Q(s',a')  
 \quad\rightarrow\quad  
 \max_{a'}Q(s',a')  
 }  
-$$
+```math
 
 SARSA 使用：
 
-$$  
+```
 a_{t+1}  
-$$
+```math
 
 即行为策略实际选择的动作。
 
 而 Q-Learning 使用：
 
-$$  
+```
 \arg\max_{a'}Q(s',a')  
-$$
+```math
 
 即当前 Q 函数认为最好的动作。
 
@@ -640,45 +640,45 @@ $$
 
 假设实际交互使用：
 
-$$  
+```
 \mu=\epsilon\text{-greedy}(Q)  
-$$
+```math
 
 那么实际采取的动作：
 
-$$  
+```
 a_t\sim\mu(\cdot|s_t)  
-$$
+```math
 
 但是 Q-Learning 更新时使用：
 
-$$  
+```
 \max_{a'}Q(s',a')  
-$$
+```math
 
 相当于目标策略为：
 
-$$  
+```
 \pi(s')
 =
 \arg\max_{a'}Q(s',a')  
-$$
+```math
 
 因此：
 
-$$  
+```
 \boxed{  
 \mu\neq\pi  
 }  
-$$
+```math
 
 所以：
 
-$$  
+```
 \boxed{  
 \text{Q-Learning是Off-policy}  
 }  
-$$
+```math
 
 ---
 
@@ -690,9 +690,9 @@ Q-Learning 经常被称为使用 **Greedy** 的方法，但需要区分：
 
 为了探索，通常使用：
 
-$$  
+```
 \mu=\epsilon\text{-greedy}(Q)  
-$$
+```math
 
 因此实际行动不一定是 Greedy。
 
@@ -702,29 +702,29 @@ $$
 
 Q-Learning 使用：
 
-$$  
+```
 \pi(s)
 =
 \arg\max_aQ(s,a)  
-$$
+```math
 
 因此目标策略是 Greedy。
 
 所以：
 
-$$  
+```
 \boxed{  
 \text{Q-Learning不是“行为完全Greedy”}  
 }  
-$$
+```math
 
 而是：
 
-$$  
+```
 \boxed{  
 \text{行为策略可以探索，TD Backup使用Greedy选择}  
 }  
-$$
+```math
 
 这也是它成为 Off-policy 方法的关键。
 
@@ -745,7 +745,7 @@ $$
 
 可以用一句话理解：
 
-$$  
+```
 \boxed{  
 \text{SARSA：按照“我实际怎么走”来评价}  
 }  
@@ -755,49 +755,49 @@ $$
 \boxed{  
 \text{Q-Learning：不管我怎么探索，按照“最优应该怎么走”来评价}  
 }  
-$$
+```math
 
 ---
 
 # 15. Q-Learning最终学习什么？
 
 Q-Learning 的目标是学习最优 Q 函数：
-$$  
+```
 Q^*(s,a)
 
 \max_\pi Q^\pi(s,a)  
-$$
+```math
 
 它满足 Bellman Optimality Equation：
 
-$$  
+```
 Q^*(s,a)
 =
 \mathbb{E}  
 \left[  
 r+\gamma\max_{a'}Q^*(s',a')  
 \right]  
-$$
+```math
 
 得到 $`Q^*`$ 后，最优策略可以直接通过 Greedy 得到：
 
-$$  
+```
 \boxed{  
 \pi^*(s)
 =
 \arg\max_a Q^*(s,a)  
 }  
-$$
+```math
 
 因此：
 
-$$  
+```
 \boxed{  
 Q^*  
 \rightarrow  
 \pi^*  
 }  
-$$
+```math
 
 ---
 
@@ -849,27 +849,27 @@ $$
 
 ## 问题一：学习什么？
 
-$$  
+```
 \boxed{  
 Q^\pi  
 \quad\text{还是}\quad  
 Q^*  
 }  
-$$
+```math
 
 如果是：
 
-$$  
+```
 Q^\pi  
-$$
+```math
 
 通常是在做 **Policy Evaluation**。
 
 如果是：
 
-$$  
+```
 Q^*  
-$$
+```math
 
 通常是在做 **Control / Policy Optimization**。
 
@@ -879,31 +879,31 @@ $$
 
 ### MC
 
-$$  
+```
 \boxed{  
 G_t  
 }  
-$$
+```math
 
 完整回报。
 
 ### TD
 
-$$  
+```
 \boxed{  
 r+\gamma Q(s',a')  
 }  
-$$
+```math
 
 Bootstrap。
 
 ### Q-Learning
 
-$$  
+```
 \boxed{  
 r+\gamma\max_{a'}Q(s',a')  
 }  
-$$
+```math
 
 Greedy / Optimality Backup。
 
@@ -913,39 +913,39 @@ Greedy / Optimality Backup。
 
 行为策略：
 
-$$  
+```
 \boxed{\mu}  
-$$
+```math
 
 目标策略：
 
-$$  
+```
 \boxed{\pi}  
-$$
+```math
 
 如果：
 
-$$  
+```
 \mu=\pi  
-$$
+```math
 
 那么：
 
-$$  
+```
 \boxed{\text{On-policy}}  
-$$
+```math
 
 如果：
 
-$$  
+```
 \mu\neq\pi  
-$$
+```math
 
 那么：
 
-$$  
+```
 \boxed{\text{Off-policy}}  
-$$
+```math
 
 ---
 
@@ -953,7 +953,7 @@ $$
 
 整个 Q-Learning 的逻辑可以压缩为：
 
-$$  
+```
 \boxed{  
 \text{环境交互}  
 \rightarrow  
@@ -965,13 +965,13 @@ Q(s,a)
 \rightarrow  
 \pi  
 }  
-$$
+```math
 
 其中：
 
 ### DP
 
-$$  
+```
 \boxed{  
 \text{模型}  
 \rightarrow  
@@ -979,11 +979,11 @@ $$
 \rightarrow  
 Q^\pi  
 }  
-$$
+```math
 
 ### MC
 
-$$  
+```
 \boxed{  
 \text{完整轨迹}  
 \rightarrow  
@@ -991,11 +991,11 @@ G_t
 \rightarrow  
 Q^\pi  
 }  
-$$
+```math
 
 ### TD / SARSA
 
-$$  
+```
 \boxed{  
 (s,a,r,s',a')  
 \rightarrow  
@@ -1003,11 +1003,11 @@ r+\gamma Q(s',a')
 \rightarrow  
 Q^\pi  
 }  
-$$
+```math
 
 ### Q-Learning
 
-$$  
+```
 \boxed{  
 (s,a,r,s')  
 \rightarrow  
@@ -1017,7 +1017,7 @@ Q^*
 \rightarrow  
 \pi^*  
 }  
-$$
+```math
 
 ---
 
@@ -1025,21 +1025,21 @@ $$
 
 传统 Q-Learning 使用 Q-table：
 
-$$  
+```
 Q(s,a)  
-$$
+```math
 
 当状态空间非常大时，无法直接存储所有状态-动作对。
 
 于是使用神经网络近似 Q：
 
-$$  
+```
 Q_\theta(s,a)  
-$$
+```math
 
 于是：
 
-$$  
+```
 \boxed{  
 \text{Q-Learning}  
 +  
@@ -1047,28 +1047,28 @@ $$
 \approx  
 \text{DQN}  
 }  
-$$
+```math
 
 DQN 的核心目标仍然来自 Q-Learning：
 
-$$  
+```
 y
 =
 r+  
 \gamma\max_{a'}Q_\theta(s',a')  
-$$
+```math
 
 只是：
 
-$$  
+```
 Q(s,a)  
-$$
+```math
 
 变成了：
 
-$$  
+```
 Q_\theta(s,a)  
-$$
+```math
 
 因此，DQN 并不是改变了 Q-Learning 的基本思想，而是：
 
@@ -1078,7 +1078,7 @@ $$
 
 # 20. 总结
 
-$$  
+```
 \boxed{  
 \text{先定义Q函数}  
 \rightarrow  
@@ -1086,11 +1086,11 @@ $$
 \rightarrow  
 \text{再研究如何利用Q改进策略}  
 }  
-$$
+```math
 
 其中：
 
-$$  
+```
 \boxed{  
 \text{DP：有模型}  
 }  
@@ -1118,11 +1118,11 @@ $$
 \boxed{  
 \text{Q-Learning：Off-policy TD Control + Greedy Backup}  
 }  
-$$
+```math
 
 最终：
 
-$$
+```
 \boxed{
 Q^*
 \rightarrow

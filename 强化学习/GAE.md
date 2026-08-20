@@ -12,12 +12,12 @@
 
 强化学习里有：
 
-$$
+```math
 V^\pi(s)
 =
 
 \mathbb E_\pi[G_t\mid s_t=s]
-$$
+```
 
 表示：
 
@@ -25,12 +25,12 @@ $$
 
 而：
 
-$$
+```math
 Q^\pi(s,a)
 =
 
 \mathbb E_\pi[G_t\mid s_t=s,a_t=a]
-$$
+```
 
 表示：
 
@@ -38,11 +38,11 @@ $$
 
 于是 Advantage：
 
-$$
+```math
 \boxed{
 A^\pi(s,a)=Q^\pi(s,a)-V^\pi(s)
 }
-$$
+```
 
 它回答的是：
 
@@ -108,20 +108,20 @@ $$
 
 最简单的方法当然是：
 
-$$
+```math
 A_t
 =
 
 G_t-V(s_t)
-$$
+```
 
 其中：
 
-$$
+```math
 G_t=r_t+\gamma r_{t+1}
 +\gamma^2r_{t+2}
 +\cdots
-$$
+```
 
 这叫 **Monte Carlo Advantage Estimation**。
 
@@ -135,14 +135,14 @@ $$
 
 我们可以只看一步：
 
-$$
+```math
 \boxed{
 \delta_t
 =
 
 r_t+\gamma V(s_{t+1})-V(s_t)
 }
-$$
+```
 
 这就是 **TD error（时序差分误差）**。
 
@@ -176,12 +176,12 @@ $$
 
 那么：
 
-$$
+```math
 \delta_t
 =
 
 2+0.9\times11-10
-$$
+```
 
 $$
 =1.9
@@ -223,7 +223,7 @@ $$
 
 于是：
 
-$$
+```math
 \boxed{
 \hat A_t
 =
@@ -235,7 +235,7 @@ $$
 \gamma^2\delta_{t+2}
 +\cdots
 }
-$$
+```
 
 这就是 GAE 最核心的思想。
 
@@ -245,7 +245,7 @@ $$
 
 更完整地写：
 
-$$
+```math
 \boxed{
 \hat A_t^{GAE(\gamma,\lambda)}
 =
@@ -254,22 +254,22 @@ $$
 (\gamma\lambda)^l
 \delta_{t+l}
 }
-$$
+```
 
 其中：
 
-$$
+```math
 \boxed{
 \delta_t
 =
 
 r_t+\gamma V(s_{t+1})-V(s_t)
 }
-$$
+```
 
 所以：
 
-$$
+```math
 \hat A_t
 =
 
@@ -279,7 +279,7 @@ $$
 +
 (\gamma\lambda)^2\delta_{t+2}
 +\cdots
-$$
+```
 
 这就是 **Generalized Advantage Estimation**。
 
@@ -303,12 +303,12 @@ $$
 
 那么：
 
-$$
+```math
 \hat A_t
 =
 
 \delta_t
-$$
+```
 
 也就是：
 
@@ -316,13 +316,13 @@ $$
 
 所以：
 
-$$
+```math
 \boxed{
 \lambda=0
 \Rightarrow
 \text{低方差，高偏差}
 }
-$$
+```
 
 ---
 
@@ -330,7 +330,7 @@ $$
 
 那么：
 
-$$
+```math
 \hat A_t
 =
 
@@ -338,29 +338,29 @@ $$
 +\gamma\delta_{t+1}
 +\gamma^2\delta_{t+2}
 +\cdots
-$$
+```
 
 会把整个未来都考虑进去。
 
 它会越来越接近 Monte Carlo：
 
-$$
+```math
 \boxed{
 \lambda=1
 \Rightarrow
 \text{低偏差，高方差}
 }
-$$
+```
 
 所以 GAE 本质上是在：
 
-$$
+```math
 \boxed{
 \text{TD Learning}
 \quad\longleftrightarrow\quad
 \text{Monte Carlo}
 }
-$$
+```
 
 之间做一个平衡。
 
@@ -374,38 +374,38 @@ $$
 
 ### 1-step
 
-$$
+```math
 \hat A_t^{(1)}
 =
 
 \delta_t
-$$
+```
 
 ### 2-step
 
-$$
+```math
 \hat A_t^{(2)}
 =
 
 \delta_t+\gamma\delta_{t+1}
-$$
+```
 
 ### 3-step
 
-$$
+```math
 \hat A_t^{(3)}
 =
 
 \delta_t
 +\gamma\delta_{t+1}
 +\gamma^2\delta_{t+2}
-$$
+```
 
 ……
 
 GAE 相当于：
 
-$$
+```math
 \boxed{
 \hat A_t^{GAE}
 =
@@ -420,7 +420,7 @@ $$
 +\cdots
 \right]
 }
-$$
+```
 
 也就是说：
 
@@ -454,7 +454,7 @@ $$
 
 那么：
 
-$$
+```math
 \hat A_t
 =
 
@@ -464,11 +464,11 @@ $$
 +
 (0.99\times0.95)^2(-0.2)
 +\cdots
-$$
+```
 
 也就是：
 
-$$
+```math
 \hat A_t
 =
 
@@ -479,7 +479,7 @@ $$
 
 0.176...
 +\cdots
-$$
+```
 
 因此：
 
@@ -499,7 +499,7 @@ $$
 
 PPO 的核心目标大致是：
 
-$$
+```math
 L^{CLIP}
 =
 
@@ -511,17 +511,17 @@ r_t(\theta)\hat A_t,
 \operatorname{clip}(r_t(\theta),1-\epsilon,1+\epsilon)\hat A_t
 \right)
 \right]
-$$
+```
 
 其中：
 
-$$
+```math
 r_t(\theta)
 =
 
 \frac{\pi_\theta(a_t|s_t)}
 {\pi_{\theta_{\text{old}}}(a_t|s_t)}
-$$
+```
 
 这里最重要的东西之一就是：
 
@@ -543,11 +543,11 @@ $$
 
 那么这个动作不错：
 
-$$
+```math
 \boxed{
 \text{提高 } \pi(a_t|s_t)
 }
-$$
+```
 
 ### 如果
 
@@ -557,11 +557,11 @@ $$
 
 那么这个动作不好：
 
-$$
+```math
 \boxed{
 \text{降低 } \pi(a_t|s_t)
 }
-$$
+```
 
 所以整个逻辑可以画成：
 
@@ -635,23 +635,23 @@ $$
 
 计算：
 
-$$
+```math
 \delta_t
 =
 
 r_t+\gamma V_\phi(s_{t+1})-V_\phi(s_t)
-$$
+```
 
 再计算：
 
-$$
+```math
 \boxed{
 \hat A_t
 =
 
 \sum_l(\gamma\lambda)^l\delta_{t+l}
 }
-$$
+```
 
 所以：
 
@@ -659,11 +659,11 @@ $$
 
 它更准确地说是：
 
-$$
+```math
 \boxed{
 \text{Advantage 的估计方法}
 }
-$$
+```
 
 ---
 
@@ -694,14 +694,14 @@ $$
 
 因此你可以把 GAE 记成：
 
-$$
+```math
 \boxed{
 \text{GAE}
 =
 
 \text{把未来多个 TD Error 按 }(\gamma\lambda)^l\text{ 加起来}
 }
-$$
+```
 
 ---
 
@@ -709,16 +709,16 @@ $$
 
 如果你现在正在从 **DQN → Double DQN → PPO → GRPO** 这条线学习，我建议把 GAE 的核心公式牢牢记住：
 
-$$
+```math
 \boxed{
 \delta_t
 =
 
 r_t+\gamma V(s_{t+1})-V(s_t)
 }
-$$
+```
 
-$$
+```math
 \boxed{
 \hat A_t
 =
@@ -730,11 +730,11 @@ $$
 (\gamma\lambda)^2\delta_{t+2}
 +\cdots
 }
-$$
+```
 
 也就是：
 
-$$
+```math
 \boxed{
 \hat A_t
 =
@@ -743,7 +743,7 @@ $$
 (\gamma\lambda)^l
 \delta_{t+l}
 }
-$$
+```
 
 其中：
 
@@ -766,7 +766,7 @@ $$
 
 而 PPO 的逻辑就是：
 
-$$
+```math
 \boxed{
 \text{采样}
 \rightarrow
@@ -782,6 +782,6 @@ A
 \rightarrow
 \text{更新 Policy}
 }
-$$
+```
 
 这也正好解释了为什么 **PPO 经常和 GAE 一起出现**：PPO 本身规定的是“**怎么更新策略**”，GAE 解决的是“**用什么方法估计这个动作的 Advantage**”。
