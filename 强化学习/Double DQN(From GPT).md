@@ -61,7 +61,7 @@ $$
 
 ---
 
-### 问题 B：$\max$ 容易导致 Q 值高估
+### 问题 B： $\max$ 容易导致 Q 值高估
 
 看这个：
 
@@ -305,7 +305,7 @@ $$
 
 # 7. 一个很重要的误区
 
-你现在看到 Dueling 里面也有：$V(s)$  
+你现在看到 Dueling 里面也有： $V(s)$  
 
 然后 Double DQN 又有：
 
@@ -323,7 +323,7 @@ $$
 
 ### Dueling 的两个分支
 
-$V(s)$和$A(s,a)$
+$V(s)$ 和 $A(s,a)$
 
 表示的是：
 
@@ -512,7 +512,7 @@ $$
     
 - target network 更新周期
     
-- $\epsilon$-greedy 的探索率
+- $\epsilon$ -greedy 的探索率
     
 
 ---
@@ -558,7 +558,7 @@ a4 → 0.9
 
 ---
 
-## 3. 用 $\epsilon$-greedy 选择动作
+## 3. 用 $\epsilon$ -greedy 选择动作
 
 Double DQN 通常仍然使用：
 

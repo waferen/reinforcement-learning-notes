@@ -739,7 +739,7 @@ $$
 | 学习对象       | $Q^\pi$              | $Q^*$                       |
 | TD Target  | $r+\gamma Q(s',a')$  | $r+\gamma\max_{a'}Q(s',a')$ |
 | 下一动作       | 实际采取的 $a'$           | Q值最大的动作                     |
-| 行为策略       | 通常 $\epsilon$-greedy | 通常 $\epsilon$-greedy        |
+| 行为策略       | 通常 $\epsilon$ -greedy | 通常 $\epsilon$ -greedy        |
 | 目标策略       | 行为策略本身               | Greedy Policy               |
 | 是否使用实际探索动作 | ✅                    | ❌                           |
 

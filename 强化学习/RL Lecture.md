@@ -14,7 +14,7 @@ https://www.bilibili.com/video/BV1TMcUzKENZ?spm_id_from=333.788.videopod.episode
 
 ![Pasted image 20260811130213.png](附件/Pasted%20image%2020260811130213.png)
 
->**Step3**：强化学习的$\{s_1,a_1,s_2,a_2,...\}$序列即轨迹 Trajectory（$\tau$）。优化目标即找到这样的 Trajectory 来让$R(\tau)$最大。这里的 Actor 即是目标的策略网络，类似 GAN 中的 Generator。Env 和 Reward 其实类似 [GAN](../GAN/GAN.md) 中的 Discriminator。但是强化学习里的最大问题在于 Env 和 Reward 输出的不稳定性，即同样的$s_1$同样的$a_1$，但是所产生的下一步$s_2$完全可能是不一样的。这会导致整个优化过程的不稳定。
+>**Step3**：强化学习的 $\{s_1,a_1,s_2,a_2,...\}$ 序列即轨迹 Trajectory（$\tau$）。优化目标即找到这样的 Trajectory 来让 $R(\tau)$ 最大。这里的 Actor 即是目标的策略网络，类似 GAN 中的 Generator。Env 和 Reward 其实类似 [GAN](../GAN/GAN.md) 中的 Discriminator。但是强化学习里的最大问题在于 Env 和 Reward 输出的不稳定性，即同样的 $s_1$ 同样的 $a_1$，但是所产生的下一步 $s_2$ 完全可能是不一样的。这会导致整个优化过程的不稳定。
 
 ![Pasted image 20260811130329.png](附件/Pasted%20image%2020260811130329.png)
 ## Policy Gradient
