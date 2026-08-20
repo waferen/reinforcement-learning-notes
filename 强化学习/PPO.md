@@ -18,7 +18,7 @@ https://iclr-blog-track.github.io/2022/03/25/ppo-implementation-details/
 
 ![Pasted image 20260812142146.png](附件/Pasted%20image%2020260812142146.png)
 ![Pasted image 20260812142405.png](附件/Pasted%20image%2020260812142405.png)
->下面我们将上面的数学推导引入 Policy Gradient，其中 $\pi_{\theta'}$ 表示旧策略。新策略的分布不清楚，可以用旧策略的分布去估计。其中 $d_{\pi_\theta}(s) \approx d_{\pi_{\theta'}}(s) \implies \frac{p_\theta(s)}{p_{\theta'}(s)}\approx 1$ 为 PPO 核心假设，即认为旧策略与新策略状态访问分布几乎一致。这里的 $\boldsymbol{J^{\theta'}(\theta) = \mathbb{E}_{(s_t,a_t)\sim\pi_{\theta'}} \left[\;\frac{p_\theta(a_t|s_t)}{p_{\theta'}(a|s_t)}\; A^{\theta'}(s_t,a_t)\;\right]}$ 其实就是 Gradient 对 $\theta$ 的积分，即 $J^{\theta'}(\theta)$ 求导就得到Policy Gradient，所以 $J^{\theta'}(\theta)$ 即是目标函数(Objective Function)。
+>下面我们将上面的数学推导引入 Policy Gradient，其中 $\pi_{\theta'}$ 表示旧策略。新策略的分布不清楚，可以用旧策略的分布去估计。其中 $d_{\pi_\theta}(s) \approx d_{\pi_{\theta'}}(s) \implies \frac{p_\theta(s)}{p_{\theta'}(s)}\approx 1$ 为 PPO 核心假设，即认为旧策略与新策略状态访问分布几乎一致。这里的 $`\boldsymbol{J^{\theta'}(\theta) = \mathbb{E}_{(s_t,a_t)\sim\pi_{\theta'}} \left[\;\frac{p_\theta(a_t|s_t)}{p_{\theta'}(a|s_t)}\; A^{\theta'}(s_t,a_t)\;\right]}`$ 其实就是 Gradient 对 $\theta$ 的积分，即 $J^{\theta'}(\theta)$ 求导就得到Policy Gradient，所以 $J^{\theta'}(\theta)$ 即是目标函数(Objective Function)。
 
 >这里的 $A^{\theta'}(s_t,a_t)$ 可以参考[GAE](GAE.md)中的内容理解。
 
