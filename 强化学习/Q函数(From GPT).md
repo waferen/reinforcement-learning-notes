@@ -867,9 +867,9 @@ $$
 
 如果是：
 
-$$  
+```math
 Q^*  
-$$
+```
 
 通常是在做 **Control / Policy Optimization**。
 

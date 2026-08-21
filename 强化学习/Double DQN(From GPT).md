@@ -172,9 +172,9 @@ a^*
 
 ### 第二步：Target Network 负责评价这个动作
 
-$$
+```math
 Q_{\theta^-}(s',a^*)
-$$
+```
 
 所以 target 变成：
 
@@ -740,9 +740,9 @@ Q_\theta(s_{i+1},\cdot)
 
 那么：
 
-$$
+```math
 a_i^*=a_2
-$$
+```
 
 因为：
 
@@ -770,9 +770,9 @@ $$
 
 所以现在已经知道：
 
-$$
+```math
 a_i^*=a_2
-$$
+```
 
 接下来交给 Target Network：
 
@@ -856,9 +856,9 @@ Q_\theta(s',\cdot)
 
 所以：
 
-$$
+```math
 a^*=\arg\max_aQ_\theta(s',a)=a_2
-$$
+```
 
 然后 Target Network 给出：
 
@@ -870,9 +870,9 @@ Q_{\theta^-}(s',\cdot)
 
 注意这里：
 
-$$
+```math
 a^*=a_2
-$$
+```
 
 所以我们只取：
 
